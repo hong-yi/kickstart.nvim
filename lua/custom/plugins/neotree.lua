@@ -7,19 +7,22 @@ return {
     'MunifTanjim/nui.nvim',
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
-  config = {
-    window = {
-      filesystem = {
-        filtered_items = {
-          hide_hidden = false,
-          hide_dotfiles = false,
-          hide_gitignored = false,
+  opts = {
+    filesystem = {
+      follow_current_file = { enabled = true },
+      filtered_items = {
+        hide_hidden = false,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+      },
+      window = {
+        mappings = {
+          ['<Tab>'] = 'open',
         },
       },
-      mappings = {
-        ['<Tab>'] = 'open',
-      },
-      width = 30,
     },
   },
+  config = function(_, opts)
+    require('neo-tree').setup(opts)
+  end,
 }
